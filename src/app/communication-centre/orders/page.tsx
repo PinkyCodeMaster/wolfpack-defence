@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/select'
 import { Badge } from '@/components/ui/badge'
 import {
-    ArrowUpDown,
+
     ChevronDown,
     ChevronUp,
     Search
@@ -46,7 +46,7 @@ const mockOrders: Order[] = [
 ]
 
 export default function OrdersPage() {
-    const [orders, setOrders] = useState<Order[]>(mockOrders)
+    const [orders,] = useState<Order[]>(mockOrders)
     const [sortColumn, setSortColumn] = useState<keyof Order>('date')
     const [sortDirection, setSortDirection] = useState<'asc' | 'desc'>('desc')
     const [filterType, setFilterType] = useState<'all' | 'incoming' | 'outgoing'>('all')
@@ -99,7 +99,7 @@ export default function OrdersPage() {
                         <Search className="h-4 w-4" />
                     </Button>
                 </div>
-                <Select value={filterType} onValueChange={(value: any) => setFilterType(value)}>
+                <Select value={filterType} onValueChange={(value: never) => setFilterType(value)}>
                     <SelectTrigger className="w-full sm:w-[180px]">
                         <SelectValue placeholder="Filter by type" />
                     </SelectTrigger>

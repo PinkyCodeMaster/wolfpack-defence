@@ -5,22 +5,21 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { 
-  Select, 
-  SelectContent, 
-  SelectItem, 
-  SelectTrigger, 
-  SelectValue 
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
 } from '@/components/ui/select'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { 
-  Search, 
-  Shield, 
-  Crosshair, 
-  Zap, 
-  Eye, 
-  Radio, 
-  Headphones, 
+import {
+  Search,
+  Shield,
+  Crosshair,
+  Eye,
+  Radio,
+  Headphones,
   Briefcase,
   PlusCircle,
   MinusCircle
@@ -94,11 +93,11 @@ export default function LoadoutsPage() {
   const [missionFilter, setMissionFilter] = useState<'all' | 'assault' | 'recon' | 'support'>('all')
   const [customLoadout, setCustomLoadout] = useState<LoadoutItem[]>([])
 
-  const filteredLoadouts = loadouts.filter(loadout => 
+  const filteredLoadouts = loadouts.filter(loadout =>
     (terrainFilter === 'all' || loadout.terrain === terrainFilter) &&
     (missionFilter === 'all' || loadout.mission === missionFilter) &&
     (loadout.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-     loadout.description.toLowerCase().includes(searchTerm.toLowerCase()))
+      loadout.description.toLowerCase().includes(searchTerm.toLowerCase()))
   )
 
   const addToCustomLoadout = (item: LoadoutItem) => {
@@ -114,7 +113,7 @@ export default function LoadoutsPage() {
   return (
     <div className="space-y-6">
       <h1 className="text-3xl font-bold">Tactical Loadouts</h1>
-      
+
       <div className="flex flex-col sm:flex-row justify-between items-center space-y-4 sm:space-y-0 sm:space-x-4">
         <div className="flex items-center space-x-2 w-full sm:w-auto">
           <Input
@@ -128,6 +127,7 @@ export default function LoadoutsPage() {
           </Button>
         </div>
         <div className="flex space-x-2">
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <Select value={terrainFilter} onValueChange={(value: any) => setTerrainFilter(value)}>
             <SelectTrigger className="w-[120px]">
               <SelectValue placeholder="Terrain" />
@@ -140,6 +140,7 @@ export default function LoadoutsPage() {
               <SelectItem value="arctic">Arctic</SelectItem>
             </SelectContent>
           </Select>
+          {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
           <Select value={missionFilter} onValueChange={(value: any) => setMissionFilter(value)}>
             <SelectTrigger className="w-[120px]">
               <SelectValue placeholder="Mission" />

@@ -5,14 +5,15 @@ import { type User as SupabaseUser } from "@supabase/supabase-js";
 const supabase = createClient();
 
 export function useAuth() {
-  const [user, setUser] = useState<SupabaseUser>();
+  // Change the initial state of user to be `SupabaseUser | null`
+  const [user, setUser] = useState<SupabaseUser | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const { data: authListener } = supabase.auth.onAuthStateChange(
       async (event, session) => {
         const currentUser = session?.user ?? null;
-        setUser(currentUser);
+        setUser(currentUser); // This now accepts `null`
         setLoading(false);
       }
     );
@@ -28,7 +29,7 @@ export function useAuth() {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    setUser(user);
+    setUser(user); // This now also accepts `null`
     setLoading(false);
   }
 
@@ -43,7 +44,7 @@ export function useAuth() {
   const logout = async () => {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
-    setUser(null);
+    setUser(null); // This is valid now
   };
 
   const register = async (email: string, password: string) => {
